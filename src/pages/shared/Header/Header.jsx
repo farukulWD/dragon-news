@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Container>
+    <Container className="py-3">
       <div className="text-center">
         <img src={logo} alt="" />
         <p className="text-secondary">

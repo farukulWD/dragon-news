@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import RightNav from "../pages/shared/RightNav/RightNav";
 import Footer from "../pages/shared/Footer/Footer";
 
+
 const NewsLayout = () => {
   return (
     <div>
