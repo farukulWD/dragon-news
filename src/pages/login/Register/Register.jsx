@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { useState } from "react";
 
 const Register = () => {
+  const { createUser, updateNameProfile } = useContext(AuthContext);
+  const [accepted, setAccepted] = useState(false);
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photo = form.photoUrl.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    createUser(email, password)
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+        updateNameProfile(name, photo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleTerms=event=>{
+    setAccepted(event.target.checked);
+  }
+
   return (
     <Container className="w-25 mx-auto">
-      <Form>
+      <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -43,11 +69,23 @@ const Register = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3 text-center" controlId="formBasicCheckbox">
+        <Form.Group  className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check
+          onClick={handleTerms}
+            type="checkbox"
+            name="terms"
+            label={
+              <>
+                Accept <Link to="/terms">Terms and Condition</Link>
+              </>
+            }
+          />
+        </Form.Group>
+        <Form.Group className="mb-3 text-center" controlId="">
           I Have an account ? <Link to="/login">Login</Link>
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Login
+        <Button disabled={!accepted} variant="primary" type="submit">
+          Register
         </Button>
         <Form.Text className="text-success"></Form.Text>
         <Form.Text className="text-danger"></Form.Text>

@@ -1,11 +1,11 @@
 import React from 'react';
-import NaviagationBar from '../pages/shared/navigationBar/NaviagationBar';
+import NavigationBar from '../pages/shared/navigationBar/NavigationBar';
 import { Outlet } from 'react-router-dom';
 
 const LoginLayout = () => {
     return (
         <div>
-            <NaviagationBar></NaviagationBar>
+            <NavigationBar></NavigationBar>
             <Outlet></Outlet>
         </div>
     );
