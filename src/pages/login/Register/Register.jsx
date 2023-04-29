@@ -30,7 +30,7 @@ const Register = () => {
   }
 
   return (
-    <Container className="w-25 mx-auto">
+    <Container className="col-lg-3 mx-auto">
       <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
